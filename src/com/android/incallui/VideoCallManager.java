@@ -70,7 +70,8 @@ public class VideoCallManager {
                     ar = (AsyncResult) msg.obj;
                     if (ar != null && ar.result != null && ar.exception == null) {
                         int orientation = (Integer) ar.result;
-                        mMediaHandler.sendCvoInfo(orientation);
+                        if (mMediaHandler != null)
+                            mMediaHandler.sendCvoInfo(orientation);
                         notifyCvoClient(orientation);
                     }
                     break;
@@ -88,7 +89,8 @@ public class VideoCallManager {
         mCameraHandler = CameraHandler.getInstance(context);
         mMediaHandler = MediaHandler.getInstance();
         mCvoHandler = new CvoHandler(context);
-        mMediaHandler.registerForCvoModeRequestChanged(mHandler, CVO_MODE_REQUEST_CHANGED, null);
+        if (mMediaHandler != null)
+            mMediaHandler.registerForCvoModeRequestChanged(mHandler, CVO_MODE_REQUEST_CHANGED, null);
         mCvoHandler.registerForCvoInfoChange(mHandler, CVO_INFO_CHANGED, null);
     }
 
@@ -131,7 +133,9 @@ public class VideoCallManager {
      * @deprecated
      */
     public int mediaInit() {
-        return mMediaHandler.init();
+        if (mMediaHandler != null)
+            return mMediaHandler.init();
+        return -1;
     }
 
     /**

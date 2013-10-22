@@ -200,7 +200,12 @@ public class VideoCallPanel extends RelativeLayout implements TextureView.Surfac
         mCameraPicker.setOnClickListener(this);
 
         // Get the camera IDs for front and back cameras
-        mVideoCallManager = VideoCallManager.getInstance(mContext);
+        try {
+            mVideoCallManager = VideoCallManager.getInstance(mContext);
+        } catch (UnsatisfiedLinkError ule) {
+            Log.e(LOG_TAG, "THIS IS VERY VERY BAD!", ule);
+            return;
+        }
         mBackCameraId = mVideoCallManager.getBackCameraId();
         mFrontCameraId = mVideoCallManager.getFrontCameraId();
         chooseCamera(true);
