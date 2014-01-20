@@ -1,14 +1,16 @@
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
-LOCAL_MODULE_TAGS := optional
+LOCAL_STATIC_JAVA_LIBRARIES := com.android.services.telephony.common \
+        guava \
 
-# Need to specify an invalid resoure path to avoid including resource
-LOCAL_RESOURCE_DIR := res_none
+LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
 LOCAL_PACKAGE_NAME := InCallUI
-LOCAL_CERTIFICATE := shared
+LOCAL_CERTIFICATE := platform
 LOCAL_PRIVELEGED_MODULE := false
+
+LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 
 include $(BUILD_PACKAGE)
 
