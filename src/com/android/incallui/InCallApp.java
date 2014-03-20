@@ -50,18 +50,6 @@ public class InCallApp extends Application {
     public static final String ACTION_ANSWER_ICOMING_CALL =
             "com.android.incallui.ACTION_ANSWER_ICOMING_CALL";
 
-    /**
-     * Intent Action used for dismiss the current incoming call from Notification bar.
-     */
-    public static final String ACTION_DISMISS_ICOMING_CALL =
-            "com.android.incallui.ACTION_DISMISS_ICOMING_CALL";
-
-    /**
-     * Intent Action used for answer the current incoming call from Notification bar.
-     */
-    public static final String ACTION_ANSWER_ICOMING_CALL =
-            "com.android.incallui.ACTION_ANSWER_ICOMING_CALL";
-
     public InCallApp() {
     }
 
