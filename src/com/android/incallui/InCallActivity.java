@@ -347,7 +347,6 @@ public class InCallActivity extends Activity {
         InCallPresenter.getInstance().getProximitySensor().onConfigurationChanged(config);
     }
 
-    @Override
     public CallButtonFragment getCallButtonFragment() {
         return mCallButtonFragment;
     }
