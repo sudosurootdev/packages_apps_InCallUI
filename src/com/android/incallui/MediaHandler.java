@@ -49,9 +49,6 @@ public class MediaHandler extends Handler {
     public static final int DPL_INIT_FAILURE = -1;
     public static final int DPL_INIT_MULTIPLE = -2;
 
-    public static final int PLAYER_STATE_STARTED = 0;
-    public static final int PLAYER_STATE_STOPPED = 1;
-
     private static final String TAG = "VideoCall_MediaHandler";
 
     private static SurfaceTexture mSurface;
@@ -76,8 +73,6 @@ public class MediaHandler extends Handler {
     //Following values are from the IMS VT API documentation
     public static final int PARAM_READY_EVT = 1;
     public static final int START_READY_EVT = 2;
-    public static final int PLAYER_START_EVENT = 3;
-    public static final int PLAYER_STOP_EVENT = 4;
     public static final int DISPLAY_MODE_EVT = 5;
     public static final int PEER_RESOLUTION_CHANGE_EVT = 6;
 
@@ -134,7 +129,6 @@ public class MediaHandler extends Handler {
         void onDisplayModeEvent();
         void onStartReadyEvent();
         void onPeerResolutionChangeEvent();
-        void onPlayerStateChanged(int state);
     }
 
     static {
@@ -309,16 +303,6 @@ public class MediaHandler extends Handler {
                 processUIOrientationMode();
                 if (mMediaEventListener != null) {
                     mMediaEventListener.onDisplayModeEvent();
-                }
-                break;
-            case PLAYER_START_EVENT:
-                if (mMediaEventListener != null) {
-                    mMediaEventListener.onPlayerStateChanged(PLAYER_STATE_STARTED);
-                }
-                break;
-            case PLAYER_STOP_EVENT:
-                if (mMediaEventListener != null) {
-                    mMediaEventListener.onPlayerStateChanged(PLAYER_STATE_STOPPED);
                 }
                 break;
             default:

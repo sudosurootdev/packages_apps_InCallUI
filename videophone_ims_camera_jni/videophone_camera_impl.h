@@ -31,10 +31,8 @@
 
 #include <jni.h>
 #include <cutils/log.h>
-#include <utils/String16.h>
 
-typedef int16_t (*ImsCameraOpenFunc)(uint32_t);
-typedef int16_t (*ImsCameraOpenFuncWithPackage)(uint32_t, android::String16*);
+typedef int16_t (*ImsCameraOpenFun)(uint32_t);
 typedef int16_t (*ImsCamImplInt16VoidFunc)();
 typedef int16_t (*ImsCameraSetPreviewSurface)(JNIEnv *, jobject);
 typedef int16_t (*ImsCameraSetDisplayOrientation)(uint32_t);
@@ -68,8 +66,7 @@ typedef int16_t (*ImsCameraSetParameter)(CameraParamContainer);
 typedef CameraParams (*ImsCameraGetParameter)(jobject);
 
 struct ImsCameraImplApis {
-        ImsCameraOpenFunc cameraOpen;
-        ImsCameraOpenFuncWithPackage cameraOpenWithPackage;
+        ImsCameraOpenFun cameraOpen;
         ImsCamImplInt16VoidFunc cameraRelease;
         ImsCamImplInt16VoidFunc startCameraPreview;
         ImsCamImplInt16VoidFunc stopCameraPreview;

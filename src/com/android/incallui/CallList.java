@@ -109,10 +109,6 @@ public class CallList {
     public void onIncoming(Call call, List<String> textMessages) {
         Log.d(this, "onIncoming - " + call);
 
-        // ensure the ringing call is active subscription, since phone state
-        // changed is notified before new incoming call ringing, and the event
-        // will switch active sub to a wrong sub(which is not ringing)
-        CallCommandClient.getInstance().setActiveSubscription(call.getSubscription());
         updateActiveSuscription();
 
         updateCallInMap(call);
